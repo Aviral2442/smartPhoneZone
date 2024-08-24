@@ -46,37 +46,24 @@ Route::get('/', [HomeController::class, 'homeData'])->name('frontend.home.sectio
 Route::get('/about', [AboutController::class, 'aboutData'])->name('frontend.about.section');
 
 
-
-
-
-
-
-
-
-
                                                                    //  ROUTES FOR THE ADMIN PAGES
 
 Route::get('/admin', function () {
     return redirect('/admin/login');
 });
 
-Route::get('/admin/login', function () {
-    return view('AdminPanel.auth.adminLogin');
-});
-
 Route::get('/admin/register', function () {
     return view('AdminPanel.auth.adminRegister');
 });
 
-
+Route::get('/admin/login', function () {
+    return view('AdminPanel.auth.adminLogin');
+})->name('admin.login');
 
 Route::middleware([AuthMiddleware::class])->group(function () {
+    Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/admin/blog', [BlogController::class, 'blog'])->name('blog');    
+});
 
 Route::post('/admin/login', [AdminLoginController::class, 'adminLoginSubmit'])->name('admin.loginSubmit');
 Route::post('/admin/register', [AdminLoginController::class, 'adminRegisterSubmit'])->name('admin.RegisterSubmit');
-    
-Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-
-Route::get('/admin/blog', [BlogController::class, 'blog'])->name('blog');
-
-});

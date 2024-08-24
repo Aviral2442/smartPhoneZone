@@ -45,7 +45,6 @@ class AdminLoginController extends Controller
             } else {
                 DB::beginTransaction();
 
-
                 $data['adminName'] = $request->input('r_adminName');
                 $data['adminEmail'] = $request->input('r_adminEmail');
                 $data['adminPhoneNumber'] = $request->input('r_adminPhoneNumber');
@@ -76,13 +75,14 @@ class AdminLoginController extends Controller
     }
 
     public function adminLoginSubmit(Request $request){
+        // dd($request->all());
         try{
             $validationData = Validator::make($request->all(),[
                 'adminEmail' => 'required|email',
-                'userPassword' => 'required',
+                'adminPassword' => 'required',
             ],[
                 'adminEmail.email' => 'Please enter a valid email address.',
-                'userPassword.required' => 'The password field is required.',
+                'adminPassword.required' => 'The password field is required.',
             ]);
 
             if($validationData->fails()){
@@ -91,17 +91,14 @@ class AdminLoginController extends Controller
 
             $conditions = [
                 'adminEmail' => $request->post('adminEmail'),
-                'userPassword' => $request->post('userPassword'),
+                'adminPassword' => $request->post('adminPassword'),
             ];
 
             $authentication = DB::table('admin')->where($conditions)->first();
-
+            
             if($authentication){
-                Session::put([
-                    'adminEmail' => $authentication->adminEmail,
-                    'adminEmail' => $authentication->adminEmail,
-                ]);
-                return redirect()->route('admin.dashboard');
+                Session::put('adminEmail', $authentication->adminEmail);
+                return redirect()->route('dashboard');
             }else{
                 // return back()->withErrors(['error' => 'Wrong credentials']);
                 redirect()->route('admin.login')->with('error','Wrong credentials');

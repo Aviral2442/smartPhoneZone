@@ -87,6 +87,12 @@
     }
 </style>
 
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 <section class="container forms">
     <div class="form login">
         <header>Admin Login</header>
@@ -94,19 +100,19 @@
             @csrf
 
             <div class="field input-field">
-                <input type="email" placeholder="Email" class="input" name="userEmail" id="userEmail">
+                <input type="email" placeholder="Email" class="input" name="adminEmail" id="adminEmail">
                 <span class="fa fa-envelope form-control-feedback left" aria-hidden="true">
-                    @error('userEmail')
+                    @error('adminEmail')
                         <p class="red">{{ $message }}</p>
                     @enderror
                 </span>
             </div>
 
             <div class="field input-field">
-                <input type="password" placeholder="Password" class="password" id="password" name="userPassword">
+                <input type="password" placeholder="Password" class="password" id="password" name="adminPassword">
                 <span class="eye-icon" id="togglePassword"><i class="fa-regular fa-eye"></i></span>
                 <span class="fa fa-envelope form-control-feedback left" aria-hidden="true">
-                    @error('userPassword')
+                    @error('adminPassword')
                         <p class="red">{{ $message }}</p>
                     @enderror
                 </span>

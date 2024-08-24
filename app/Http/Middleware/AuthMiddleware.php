@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Session;
 
 class AuthMiddleware
 {
@@ -14,11 +15,12 @@ class AuthMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        if (Session::has('user_email') && Session::has('user_pass')) {
+    {           
+        // if (Session::has('adminEmail') && Session::has('adminEmail')) {
+        if (Session::has('adminEmail')) {
             return $next($request);
         } else {
-            return redirect()->route('hcpanel.admin.components.login');
+            return redirect()->route('admin.login')->with('error', 'You must be logged in to view this page');
         }
     }
 }
