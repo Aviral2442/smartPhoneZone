@@ -24,7 +24,7 @@
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
                 <a 
-                {{-- href="{{ route('admin.orders.index') }}"  --}}
+                {{-- href="{{ route('admin.orders.index') }}" --}}
                 class="text-white stretched-link">View Orders</a>
                 <i class="bi bi-basket"></i>
             </div>
