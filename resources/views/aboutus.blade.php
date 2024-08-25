@@ -53,7 +53,7 @@
         }
     </style>
 
-    <div class="container">
+    <div class="container py-4">
         <div class="row gap-3">
             <div class="col-md box-border">
                 <div class="py-3">
@@ -114,31 +114,30 @@
 
     <style>
         .slider-container {
-            width: 1300px;
-            /* 4 slides x 300px each */
+            width: 100%;
+            max-width: 1300px; /* Maximum width for large screens */
             overflow: hidden;
             margin: 0 auto;
             position: relative;
         }
-
+    
         .slider {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
-
+    
         .cardFounder {
-            min-width: 310px;
+            min-width: calc(25% - 10px); /* Responsive width for 4 slides */
             box-sizing: border-box;
-            margin-right: 10px;
-            /* space between slides */
+            margin-right: 10px; /* space between slides */
         }
-
+    
         .cardFounder img {
             object-fit: cover;
             width: 100%;
             height: 320px;
         }
-
+    
         .controls {
             position: absolute;
             top: 50%;
@@ -147,7 +146,7 @@
             justify-content: space-between;
             transform: translateY(-50%);
         }
-
+    
         .controls button {
             background-color: rgba(0, 0, 0, 0.5);
             border: none;
@@ -155,25 +154,45 @@
             padding: 10px;
             cursor: pointer;
         }
+    
+        @media (max-width: 1200px) {
+            .cardFounder {
+                min-width: calc(33.33% - 10px); /* 3 slides for medium screens */
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .cardFounder {
+                min-width: calc(50% - 10px); /* 2 slides for small screens */
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .cardFounder {
+                min-width: calc(100% - 10px); /* 1 slide for extra small screens */
+            }
+        }
     </style>
+    
 
     @php
-    $founders = json_decode($aboutus[0]->founderName);
+    $foundersName = json_decode($aboutus[0]->founderName );
     @endphp
 
-    <div class="slider-container">
+    <div class="slider-container  py-4">
         <div class="slider p-2">
-            @foreach ($founders as $item)
-                
+            @foreach ($foundersName as $item)
+            
             <div class="card p-4 shadow rounded cardFounder">
                 <div class="founderImg">
                     <img src="/images/founderImg.jpg" class="rounded" alt="FounderImg1">
                 </div>
                 <div class="pt-2">
                     <h5 style="text-align: center">{{$item->name}}</h5>
-                    <p style="text-align: center">Description 1</p>
+                    {{-- <p style="text-align: center">{{$item->description}}</p> --}}
                 </div>
             </div>
+               
             @endforeach
         </div>
         <div class="controls">
@@ -243,7 +262,7 @@
         }
     </style>
 
-    <div class="container">
+    <div class="container  py-4">
         <div class="row justify-content-center gap-3">
             <div class="col-md-3 box-border2">
                 <div class="py-3">

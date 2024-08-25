@@ -110,4 +110,9 @@ class AdminLoginController extends Controller
         }
     }
 
+    public function getUsersEmail(){
+        $users = DB::table('admin')->get();
+        return response()->json($users);
+    }
+
 }

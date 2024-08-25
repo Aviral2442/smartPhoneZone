@@ -17,18 +17,18 @@
 
 <body>
     <div id="app">
+        
         @include('AdminPanel.includes.adminHeader')
-
         <div class="container-fluid">
             <div class="row">
                 @include('AdminPanel.includes.adminLeftSideBar')
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
                     @yield('content')
                 </main>
             </div>
         </div>
-
         @include('AdminPanel.includes.adminFooter')
+
     </div>
 
     <!-- Bootstrap JS and dependencies -->
