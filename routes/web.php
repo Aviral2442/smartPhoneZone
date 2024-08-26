@@ -64,7 +64,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/admin/blog', [BlogController::class, 'blog'])->name('admin.blog'); 
     Route::get('/admin/adminProfileDetails', [AdminProfileController::class, 'adminProfileDetails'])->name('admin.adminProfileDetails');   
-    Route::get('/admin/adminActiveDetails', [AdminProfileController::class, 'adminActiveDetails'])->name('admin.adminActiveDetails');   
+    Route::get('/admin/adminProfileDetails', [AdminProfileController::class, 'adminActiveDetails'])->name('admin.adminActiveDetails');   
 });
 
 Route::post('/admin/login', [AdminLoginController::class, 'adminLoginSubmit'])->name('admin.loginSubmit');

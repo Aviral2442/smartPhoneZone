@@ -74,22 +74,22 @@
                     <a href="#" class="quick-links" ><span><i class="fa-solid fa-cloud-arrow-up" style="font-size: 10px"></i></span>  Update Profile</a> 
                     <a href="#" style="font-size: 10px; margin-top: 0px; text-decoration: none;" ><span><i class="fa-solid fa-ban" style="font-size: 10px"></i></span>  Remove Profile</a>
                 </p>
-            </div>
+            </div>  
             <div class="col-md-8">
                 <form action="" class="p-4">
         
                     <div class="admin-profile-field">
-                        {{-- <input type="text"  class="input"  value="{{ $adminDetails->adminName }}"> --}}
+                        <input type="text"  class="input"  value="{{ $adminDetails->adminName }}">
                     </div>        
                     <div class="admin-profile-field">
-                        <input type="text" placeholder="Admin Email" class="input" name="adminEmail" id="adminEmail" value="{{ session('adminEmail') }}">
+                        <input type="text" class="input" value="{{ $adminDetails->adminEmail }}">
                         <p><a href="#" class="quick-links" ><span><i class="fa-solid fa-pen" style="font-size: 10px"></i></span> Change email</a></p>
                     </div>        
                     <div class="admin-profile-field">
-                        <input type="text" placeholder="Admin Phone Number" class="input" name="adminPhoneNumber" id="adminPhoneNumber" value="{{ session('adminPhoneNumber') }}">
+                        <input type="text" placeholder="Admin Phone Number" class="input" name="adminPhoneNumber" id="adminPhoneNumber" value="{{ $adminDetails->adminPhoneNumber }}">
                     </div>
                     <div class="admin-profile-field">
-                        <input type="password" placeholder="Admin Password" class="input" name="adminPassword" id="adminPassword" value="{{ session('adminPassword') }}">
+                        <input type="password" placeholder="Admin Password" class="input" name="adminPassword" id="adminPassword" value="{{ $adminDetails->adminPassword }}">
                         <p class="d-flex justify-content-between">
                             <a href="#" class="quick-links" ><span><i class="fa-solid fa-pen" style="font-size: 10px"></i></span> Change password</a>
                             <a href="#" class="quick-links" ><span><i class="fa-solid fa-repeat" style="font-size: 10px"></i></span> Forget password</a> </p>
