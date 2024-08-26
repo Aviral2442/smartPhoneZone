@@ -1,51 +1,44 @@
 @extends('AdminPanel.layout.adminLayout')
 @section('content')
-{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> --}}
 
 <style>
     /* Google Fonts - Poppins */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
     
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
-    
-    .container {
-        height: 100vh;
+    .admin-profile-container {
+        /* height: 60vh; */
         width: 100%;
         display: flex;
-        align-items: center;
         justify-content: center;
-        background-color: #4070f4;
+        align-items: center;
     }
     
-    .form {
-        max-width: 430px;
+    .admin-profile-form {
+        max-width: 890px;
         width: 100%;
         padding: 30px;
         border-radius: 6px;
         background: #FFF;
     }
     
-    header {
+    .admin-profile-header {
         font-size: 28px;
         font-weight: 600;
-        color: #232836;
         text-align: center;
+        z-index: 1;
+    }
+    .profileImg{
+        border: #CACACA 1px solid;
     }
     
-    .field {
-        position: relative;
+    .admin-profile-field {
         height: 50px;
         width: 100%;
         margin-top: 20px;
         border-radius: 6px;
     }
     
-    .field input {
+    .admin-profile-field input {
         height: 100%;
         width: 100%;
         padding: 0 15px;
@@ -54,96 +47,64 @@
         font-size: 16px;
         outline: none;
     }
-    
-    .eye-icon {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        font-size: 12px;
-        color: #050000;
-        cursor: pointer;
-        padding: 5px;
-    }
-    
-    .field button {
-        height: 100%;
-        width: 100%;
-        color: #fff;
-        background-color: #0171d3;
-        border: none;
-        font-size: 16px;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    
-    .field button:hover {
-        background-color: #016dcb;
+    .quick-links{
+        color: #007bff;
+        font-size: 10px;
+        margin-top: 1px;
+        padding-bottom: 5px;
+        text-decoration: none;
     }
     
     @media screen and (max-width: 400px) {
-        .form {
+        .admin-profile-form {
             padding: 20px 10px;
         }
     }
 </style>
 
-@if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
+<section class="admin-profile-container">
+    <div class="admin-profile-form shadow rounded">
+        <header class="admin-profile-header">Admin Profile</header>
+        <div class="d-flex p-2">
+            <div class="col-md-4 p-4 " >
+                <div class="d-flex justify-content-md-center">
+                <img class="d-flex justify-content-md-center profileImg" src="/images/aviral.png" width="220px" height="220px" class="p-2" alt="">
+            </div>
+                <p class="d-flex justify-content-between" >
+                    <a href="#" class="quick-links" ><span><i class="fa-solid fa-cloud-arrow-up" style="font-size: 10px"></i></span>  Update Profile</a> 
+                    <a href="#" style="font-size: 10px; margin-top: 0px; text-decoration: none;" ><span><i class="fa-solid fa-ban" style="font-size: 10px"></i></span>  Remove Profile</a>
+                </p>
+            </div>
+            <div class="col-md-8">
+                <form action="" class="p-4">
+        
+                    <div class="admin-profile-field">
+                        {{-- <input type="text"  class="input"  value="{{ $adminDetails->adminName }}"> --}}
+                    </div>        
+                    <div class="admin-profile-field">
+                        <input type="text" placeholder="Admin Email" class="input" name="adminEmail" id="adminEmail" value="{{ session('adminEmail') }}">
+                        <p><a href="#" class="quick-links" ><span><i class="fa-solid fa-pen" style="font-size: 10px"></i></span> Change email</a></p>
+                    </div>        
+                    <div class="admin-profile-field">
+                        <input type="text" placeholder="Admin Phone Number" class="input" name="adminPhoneNumber" id="adminPhoneNumber" value="{{ session('adminPhoneNumber') }}">
+                    </div>
+                    <div class="admin-profile-field">
+                        <input type="password" placeholder="Admin Password" class="input" name="adminPassword" id="adminPassword" value="{{ session('adminPassword') }}">
+                        <p class="d-flex justify-content-between">
+                            <a href="#" class="quick-links" ><span><i class="fa-solid fa-pen" style="font-size: 10px"></i></span> Change password</a>
+                            <a href="#" class="quick-links" ><span><i class="fa-solid fa-repeat" style="font-size: 10px"></i></span> Forget password</a> </p>
+                    </div> 
+        
+                </form>
+
+            </div>
     </div>
-@endif
-
-<section class="container forms">
-    <div class="form login">
-        <header>Admin Login</header>
-        <form action="/admin/login" method="POST" >
-            @csrf
-
-            <div class="field input-field">
-                <input type="email" placeholder="Email" class="input" name="adminEmail" id="adminEmail">
-                <span class="fa fa-envelope form-control-feedback left" aria-hidden="true">
-                    @error('adminEmail')
-                        <p class="red">{{ $message }}</p>
-                    @enderror
-                </span>
-            </div>
-
-            <div class="field input-field">
-                <input type="password" placeholder="Password" class="password" id="password" name="adminPassword">
-                <span class="eye-icon" id="togglePassword"><i class="fa-regular fa-eye"></i></span>
-                <span class="fa fa-envelope form-control-feedback left" aria-hidden="true">
-                    @error('adminPassword')
-                        <p class="red">{{ $message }}</p>
-                    @enderror
-                </span>
-            </div>
-
-            <div class="field button-field">
-                <button type="submit" name="submit" value="login">Login</button>
-            </div>
-        </form>
+    <div class="btn-group d-flex gap-2" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-danger col-6 rounded"> <span><i class="fa-solid fa-trash"></i></span>   Delete Account</button>
+        <button type="button" class="btn btn-primary col-6 rounded"> <span><i class="fa-solid fa-pen-to-square"></i></span>  Update Profile</button>
+      </div>
     </div>
 </section>
 
-<!-- Font Awesome for icons -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
-
-
-<!-- JavaScript to toggle password visibility -->
-<script>
-    const togglePassword = document.querySelector("#togglePassword");
-    const password = document.querySelector("#password");
-
-    togglePassword.addEventListener("click", function () {
-        // Toggle the type attribute
-        const type = password.getAttribute("type") === "password" ? "text" : "password";
-        password.setAttribute("type", type);
-
-        // Toggle the icon
-        this.classList.toggle("fa-regular fa-eye");
-        this.classList.toggle("fa-regular fa-eye-slash");
-    });
-</script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script> --}}
 @endsection

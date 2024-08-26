@@ -40,7 +40,6 @@ Route::get('/register', function () {
     return view('register');
 });
 
-
 Route::get('/', [HomeController::class, 'homeData'])->name('frontend.home.section');
 Route::get('/about', [AboutController::class, 'aboutData'])->name('frontend.about.section');
 
@@ -64,7 +63,8 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/admin/getUsersEmail', [AdminLoginController::class, 'getUsersEmail'])->name('admin.getUsersEmail');
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/admin/blog', [BlogController::class, 'blog'])->name('admin.blog'); 
-    Route::get('/admin/adminProfileDetails', [AdminProfileController::class. 'adminProfileDetails'])->name('admin.adminProfileDetails');   
+    Route::get('/admin/adminProfileDetails', [AdminProfileController::class, 'adminProfileDetails'])->name('admin.adminProfileDetails');   
+    Route::get('/admin/adminActiveDetails', [AdminProfileController::class, 'adminActiveDetails'])->name('admin.adminActiveDetails');   
 });
 
 Route::post('/admin/login', [AdminLoginController::class, 'adminLoginSubmit'])->name('admin.loginSubmit');
