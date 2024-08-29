@@ -2,7 +2,7 @@
     header {
         background-color: #343a40;
         color: #fff;
-        padding: 15px 20px;
+        padding: 10px 20px;
         position: sticky;
         top: 0;
         z-index: 1000;
@@ -66,7 +66,7 @@
     .user-menu .dropdown-toggle {
         background-color: #007bff;
         border: none;
-        padding: 8px 20px;
+        padding: 5px 20px;
         color: #fff;
         border-radius: 25px;
         font-size: 15px;
@@ -87,12 +87,12 @@
         <div class="header-title">
             Admin Dashboard
         </div>
-        <div class="search-container">
+        {{-- <div class="search-container">
             <form class="search-box" id="searchForm">
                 <input type="text" id="searchInput" placeholder="Search...">
                 <button type="submit">Search</button>
             </form>
-        </div>
+        </div> --}}
         @php
             // Retrieve user details from session
             // $user = Auth::admin();

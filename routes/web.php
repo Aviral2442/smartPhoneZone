@@ -64,8 +64,10 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/admin/blog', [BlogController::class, 'blog'])->name('admin.blog'); 
     Route::get('/admin/adminProfileDetails', [AdminProfileController::class, 'adminProfileDetails'])->name('admin.adminProfileDetails');   
-    Route::get('/admin/adminProfileDetails', [AdminProfileController::class, 'adminActiveDetails'])->name('admin.adminActiveDetails');   
+    Route::get('/admin/adminProfileDetails', [AdminProfileController::class, 'adminActiveDetails'])->name('admin.adminActiveDetails');  
+
 });
 
+Route::post('/admin/addBlogs', [BlogController::class, 'addBlogs'])->name('admin.addBlogs'); 
 Route::post('/admin/login', [AdminLoginController::class, 'adminLoginSubmit'])->name('admin.loginSubmit');
 Route::post('/admin/register', [AdminLoginController::class, 'adminRegisterSubmit'])->name('admin.RegisterSubmit');
