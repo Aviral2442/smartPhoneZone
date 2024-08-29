@@ -62,9 +62,11 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/admin/logout', [AdminLoginController::class, 'adminLogout'])->name('admin.logout');
     Route::get('/admin/getUsersEmail', [AdminLoginController::class, 'getUsersEmail'])->name('admin.getUsersEmail');
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::get('/admin/blog', [BlogController::class, 'blog'])->name('admin.blog'); 
     Route::get('/admin/adminProfileDetails', [AdminProfileController::class, 'adminProfileDetails'])->name('admin.adminProfileDetails');   
-    Route::get('/admin/adminProfileDetails', [AdminProfileController::class, 'adminActiveDetails'])->name('admin.adminActiveDetails');  
+    Route::get('/admin/adminProfileDetails', [AdminProfileController::class, 'adminActiveDetails'])->name('admin.adminActiveDetails');
+    
+    // Route::get('/admin/blog', [BlogController::class, 'blog'])->name('admin.blog'); 
+    Route::get('/admin/blogsList', [BlogController::class, 'getBlogsList'])->name('admin.getBlogsList');
 
 });
 

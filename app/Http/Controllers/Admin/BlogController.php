@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function blog(){
-        return view('AdminPanel.blog');
+    public function getBlogsList(){
+
+		$blogsList = DB::table('blog')
+		->select('blog_id','blogFeaturedImg','blogImgAlt','blogTitle','blogCategory_id','blogStatus','createdAt')
+		->get();
+        return view('AdminPanel.blog', compact('blogsList'));
+
     }
 
     public function addBlogs(Request $request){
@@ -23,11 +28,12 @@ class BlogController extends Controller
 			$data['blogMetaTitle'] = $request->post('blogMetaTitle');
 			$data['blogMetaDescription'] = $request->post('blogMetaDescription');
 			$data['blogMetaKeywords'] = $request->post('blogMetaKeywords');
+			$data['blogImgAlt'] = $request->post('blogImgAlt');
 			$data['blogStatus'] = $request->post('blogStatus');
 
 			if ($request->hasFile('blogFeaturedImg')) {
 				$image = $request->file('blogFeaturedImg');
-				$imageName = "images/blog_images/" . time() . '.' . $image->getClientOriginalExtension();
+				$imageName = "/images/blog_images/" . time() . '.' . $image->getClientOriginalExtension();
 
 				$image->move(public_path('images/blog_images/'), $imageName);
 
@@ -38,7 +44,7 @@ class BlogController extends Controller
 			$blogId = DB::table('blog')->insertGetId($data);
 			DB::commit();
 	
-			return redirect()->route('admin.blog')->with('status', 'Blog Added Successfully');
+			return redirect()->route('admin.getBlogsList')->with('status', 'Blog Added Successfully');
 		} catch (\Exception $e) {
 			DB::rollback();
 			\Log::error('Blog Insertion Error: ' . $e->getMessage());

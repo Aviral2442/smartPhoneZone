@@ -142,7 +142,7 @@
             <a class="nav-link text-light" href="/admin/dashboard"><i class="fa-solid fa-gauge"></i><span class="sidebar-text">Dashboard</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-light" href="/admin/blog"><i class="fa-brands fa-blogger-b"></i><span class="sidebar-text">Blog</span></a>
+            <a class="nav-link text-light" href="{{ route('admin.getBlogsList') }}"><i class="fa-brands fa-blogger-b"></i><span class="sidebar-text">Blog</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-light" href="#"><i class="fa-solid fa-store"></i><span class="sidebar-text">Products</span></a>
